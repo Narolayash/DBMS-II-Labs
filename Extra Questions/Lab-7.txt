@@ -1,0 +1,99 @@
+# **Lab-7: INSTEAD OF Trigger – Extra Questions**
+
+---
+
+## Query 4 – Detect and Log Operations on COURSE Table
+
+Create an INSTEAD OF trigger on the COURSE table that detects which
+operation is attempted and logs it in the LOG table.
+
+Task Requirements:
+
+- If a user attempts to INSERT, UPDATE, or DELETE records in the
+COURSE table:
+• The operation must be blocked.
+• The attempted operation must be recorded in the LOG table.
+
+Hint:
+Use the inserted and deleted tables to identify which operation is performed.
+
+Testing Steps:
+
+1. Try inserting a record into the COURSE table.
+2. Try updating a record in the COURSE table.
+3. Try deleting a record from the COURSE table.
+4. Check entries in the LOG table.
+
+Expected Output in LOG Table:
+
+- INSERT attempted on COURSE
+- UPDATE attempted on COURSE
+- DELETE attempted on COURSE
+
+No actual change should occur in the COURSE table.
+
+---
+
+## Query 5 – Block Enrollment Year Update Only
+
+Students must not be allowed to update their EnrollmentYear.
+However, updates to other columns should still be permitted.
+
+Task Requirements:
+
+- If EnrollmentYear is updated, the operation must be blocked.
+- Updates to other columns such as department, email, or phone
+should work normally.
+
+Example Scenarios:
+
+Allowed:
+Update student department.
+
+Blocked:
+Update EnrollmentYear.
+
+Expected Output:
+Message displayed:
+Students are not allowed to update their enrollment year.
+
+EnrollmentYear remains unchanged, while other columns update normally.
+
+---
+
+## Query 6 – Student Age Validation During Insert
+
+When inserting a student record, the system must validate age using
+DateOfBirth.
+
+Task Requirements:
+
+- Calculate student age using DateOfBirth.
+- If age is less than 18, insertion must be blocked.
+- If age is 18 or above, insertion should succeed.
+
+Example Scenarios:
+
+Allowed:
+Insert student whose age is 18 or more.
+
+Blocked:
+Insert student whose age is below 18.
+
+Expected Output:
+If age < 18:
+Student must be at least 18 years old.
+Record is not inserted.
+
+If age ≥ 18:
+Record is inserted successfully.
+
+---
+
+## Conceptual Questions
+
+1. Can multiple INSTEAD OF triggers be created for the same operation (INSERT, UPDATE, or DELETE) on a single table?
+2. What is the difference between an AFTER trigger and an INSTEAD OF trigger?
+3. What data is stored in the inserted and deleted tables?
+4. Does trigger run per row or per statement?
+5. Can a trigger be created on a view? If yes, which type of trigger can be created on a view: AFTER trigger, INSTEAD OF trigger, or both?

@@ -122,13 +122,29 @@ FROM COURSE
 WHERE CourseCredits = (
 	SELECT TOP 1 CourseCredits 
 	FROM COURSE
-	WHERE CourseCredits = (
+	WHERE CourseCredits IN (
 		SElECT DISTINCT TOP 2 CourseCredits 
 		FROM COURSE
 		ORDER BY CourseCredits DESC
 	)
 	ORDER BY CourseCredits
 );
+
+SELECT TOP 1 CourseName
+FROM COURSE
+WHERE CourseCredits IN (
+	SELECT DISTINCT TOP 2 CourseCredits
+	FROM COURSE
+	ORDER BY CourseCredits DESC
+)
+ORDER BY CourseCredits
+
+SELECT Top 1 CourseName,CourseCredits FROM COURSE
+WHERE CourseCredits IN
+	(SELECT DISTINCT TOP 2 CourseCredits FROM COURSE ORDER BY CourseCredits DESC)
+	ORDER BY CourseCredits;
+
+SELECT * FROM COURSE;	
 
 --Part – B 
 --20.	Retrieve all courses along with the total number of students enrolled. (COURSE, ENROLLMENT table)
